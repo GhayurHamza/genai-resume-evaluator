@@ -1,0 +1,10 @@
+/evaluator_env
+.env
+/resume_evaluator/evaluator/migrations/__pycache__
+/resume_evaluator/evaluator/__pycache__
+/resume_evaluator/resume_evaluator/__pycache__
+/resume_evaluator/evaluator/resume_data
+/resume_evaluator/evaluator/document
+/resume_evaluator/evaluator/azure_service/__pycache__
+/resume_evaluator/evaluator/query_management/__pycache__
+/resume_evaluator/evaluator/resume_management/__pycache__
