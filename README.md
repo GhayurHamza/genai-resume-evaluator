@@ -21,25 +21,25 @@ This project is a Resume Evaluator System that processes resumes, extracts key i
 ### Setup
 
 1. **Clone the Repository:**
-   ```bash
+   ```
    git clone https://github.com/yourusername/resume-evaluator.git
    cd resume-evaluator
    ```
 
 2. **Create a Virtual Environment:**
-   ```bash
-   python -m venv venv
+   ```
+   python -m venv venv or python3 -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 
 3. **Install Requirements:**
-   ```bash
+   ```
    pip install -r requirements.txt
    ```
 
 4. **Create `.env` File:**
    In the root directory of the project, create a `.env` file and add the following credentials:
-   ```env
+   ```
    OPENAI_API_KEY = "<your_openai_api_key>"
    AZURE_OPENAI_ENDPOINT = "<your_azure_openai_endpoint>"
    OPENAI_API_TYPE = "azure"
@@ -60,19 +60,21 @@ This project is a Resume Evaluator System that processes resumes, extracts key i
 5. **Setup PostgreSQL with PGVector:**
 
    Follow these steps to set up PostgreSQL with the `pgvector` extension using Docker:
+   Note: Before pulling docker image make sure you have docker installed in your system executable without 'sudo'
+   Follow url `https://docs.docker.com/engine/install/ubuntu/` for installation guide.
 
    - **Pull the Docker Image:**
-     ```bash
+     ```
      docker pull ankane/pgvector
      ```
 
    - **Run the Docker Container:**
-     ```bash
-     docker run --name pgvector-demo -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d ankane/pgvector
+     ```
+     docker run --name pgvector-demo -e POSTGRES_PASSWORD=mysecretpassword -p 5431:5431 -d ankane/pgvector
      ```
 
    - **Verify the Container is Running:**
-     ```bash
+     ```
      docker ps
      ```
 
@@ -83,20 +85,31 @@ This project is a Resume Evaluator System that processes resumes, extracts key i
      - **Username:** `postgres`
      - **Password:** `mysecretpassword`
 
+     Command to connect to postgresql database :
+     `psql -h <hostname> -p <port> -U <username> -d <database_name>
+     
    - **Create Database and Install Extension:**
-     ```sql
+     ```
      CREATE DATABASE vector_db;
+     ```
+
+   - **Connect with the created database:**
+     ```
      \c vector_db
+     ```
+   
+   - **Create pgvector extension:**
+     ```
      CREATE EXTENSION pgvector;
      ```
 
 6. **Migrate Database:**
-   ```bash
+   ```
    python3 manage.py migrate
    ```
 
 7. **Run the Server:**
-   ```bash
+   ```
    python3 manage.py runserver
    ```
 
